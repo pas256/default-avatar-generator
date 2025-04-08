@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <text x="256" y="310" font-family="Arial" font-size="220" font-weight="bold" text-anchor="middle"
+    fill="{{color}}">{{character}}</text>
+</svg>

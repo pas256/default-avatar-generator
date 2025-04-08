@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g>
+    <!-- Definitions for the gradients -->
+    <defs>
+      <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="{{color1}}" />
+        <stop offset="100%" stop-color="{{color2}}" />
+      </linearGradient>
+      <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="{{color3}}" />
+        <stop offset="100%" stop-color="{{color4}}" />
+      </linearGradient>
+      <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="{{color5}}" />
+        <stop offset="100%" stop-color="{{color6}}" />
+      </linearGradient>
+    </defs>
+
+    <!-- Three horizontal bands with gradients -->
+    <rect x="0" y="0" width="512" height="170.67" fill="url(#gradient1)" />
+    <rect x="0" y="170.67" width="512" height="170.67" fill="url(#gradient2)" />
+    <rect x="0" y="341.34" width="512" height="170.67" fill="url(#gradient3)" />
+  </g>
+</svg>
