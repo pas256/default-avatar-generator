@@ -1,5 +1,7 @@
 # Default Avatar Generator
 
+[![CI](https://github.com/pas256/default-avatar-generator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pas256/default-avatar-generator/actions/workflows/ci.yml)
+
 A Ruby gem that generates beautiful default avatars for user accounts when no custom avatar is provided.
 
 ## Installation
