@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Generate unique, default avatars for user accounts'
   spec.description   = 'Generates beautiful and unique default avatars for user accounts'
-  spec.homepage      = 'https://github.com/magicell/default-avatar-generator'
+  spec.homepage      = 'https://github.com/pas256/default-avatar-generator'
   spec.license       = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
 
