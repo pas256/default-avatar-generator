@@ -1,0 +1,23 @@
+plugins:
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+RSpec/MultipleExpectations:
+  Max: 10
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/IndexedLet:
+  Enabled: false
+
+Metrics/ClassLength:
+  CountAsOne: ["array", "hash", "heredoc", "method_call"]
+
+Metrics/MethodLength:
+  CountAsOne: ["array", "hash", "heredoc", "method_call"]

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g>
+    <defs>
+      <linearGradient id="gradient1" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="{{color1}}" />
+        <stop offset="100%" stop-color="{{color2}}" />
+      </linearGradient>
+    </defs>
+
+    <rect x="0" y="0" width="512" height="512" fill="url(#gradient1)" />
+  </g>
+</svg>

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd sample
+echo "Server starting... Once ready, visit http://localhost:9292"
+bundle exec rackup
