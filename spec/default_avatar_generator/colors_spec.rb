@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe DefaultAvatarGenerator::Colors do
-  let(:valid_colors_for) do |shades_method|
+  def valid_colors_for(shades_method)
     described_class::COLORS.values.flat_map do |shades|
       described_class.send(shades_method).map { |s| shades[s] }
     end
