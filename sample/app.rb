@@ -111,11 +111,15 @@ get '/' do # rubocop:disable Metrics/BlockLength
           <h1>Default Avatar Generator</h1>
           <div class="format-selector">
             <label>
-              <input type="radio" name="format" value="svg" #{format == 'svg' ? 'checked' : ''} onchange="window.location.href='?format=svg'">
+              <input type="radio" name="format" value="svg" #{if format == 'svg'
+                                                                'checked'
+                                                              end} onchange="window.location.href='?format=svg'">
               SVG
             </label>
             <label>
-              <input type="radio" name="format" value="jpeg" #{format == 'jpeg' ? 'checked' : ''} onchange="window.location.href='?format=jpeg'">
+              <input type="radio" name="format" value="jpeg" #{if format == 'jpeg'
+                                                                 'checked'
+                                                               end} onchange="window.location.href='?format=jpeg'">
               JPEG
             </label>
           </div>
