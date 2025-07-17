@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    default-avatar-generator (0.1.0)
+    default-avatar-generator (0.1.1)
       nokogiri (~> 1.18)
       ruby-vips (~> 2.2)
 
