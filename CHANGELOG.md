@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- `ImageConverter.svg_to_jpeg` now loads the SVG directly from memory via
+  `Vips::Image.new_from_buffer` instead of writing it to a temp file first.
+  The temp-file round trip was intermittently raising
+  `Vips::Error: ... is not a known file format` in production.
+
 ## [0.2.1] - 2026-08-30
 
 ### Changed
