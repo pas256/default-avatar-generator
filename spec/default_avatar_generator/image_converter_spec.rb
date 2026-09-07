@@ -23,5 +23,48 @@ RSpec.describe DefaultAvatarGenerator::ImageConverter do
       expect(jpeg_bytes.bytes[0..1]).to eq([0xFF, 0xD8]) # JPEG start marker
       expect(jpeg_bytes.bytes[-2..]).to eq([0xFF, 0xD9]) # JPEG end marker
     end
+
+    context 'when vips untrusted operations are globally blocked' do
+      # Apps that load Active Storage call Vips.block_untrusted(true) on boot, which disables
+      # svgload/svgload_buffer everywhere in the process -- even for content we generated
+      # ourselves. Reproduce that here instead of loading Active Storage.
+      around do |example|
+        Vips.block_untrusted(true)
+        example.run
+      ensure
+        Vips.block_untrusted(false)
+      end
+
+      it 'still converts SVG to JPEG bytes' do
+        jpeg_bytes = described_class.svg_to_jpeg(svg_content)
+
+        expect(jpeg_bytes.bytes[0..1]).to eq([0xFF, 0xD8])
+      end
+    end
+
+    context 'when rsvg-convert exits with a failure' do
+      before do
+        status = instance_double(Process::Status, success?: false)
+        allow(Open3).to receive(:capture3).and_return(['', 'rsvg-convert: some error', status])
+      end
+
+      it 'raises a DefaultAvatarGenerator::Error with the rsvg-convert stderr output' do
+        expect do
+          described_class.svg_to_jpeg(svg_content)
+        end.to raise_error(DefaultAvatarGenerator::Error, /rsvg-convert failed: rsvg-convert: some error/)
+      end
+    end
+
+    context 'when the rsvg-convert executable is not installed' do
+      before do
+        allow(Open3).to receive(:capture3).and_raise(Errno::ENOENT)
+      end
+
+      it 'raises a DefaultAvatarGenerator::Error explaining how to install it' do
+        expect do
+          described_class.svg_to_jpeg(svg_content)
+        end.to raise_error(DefaultAvatarGenerator::Error, /rsvg-convert executable not found/)
+      end
+    end
   end
 end

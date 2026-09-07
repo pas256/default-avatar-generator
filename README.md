@@ -11,6 +11,10 @@ A Ruby gem that generates beautiful default avatars for user accounts when no cu
 
 ## Installation
 
+This gem shells out to the `rsvg-convert` CLI (from `librsvg2-bin` on Debian/Ubuntu,
+`librsvg` on Homebrew) to rasterize the generated SVG, and uses [ruby-vips](https://github.com/libvips/ruby-vips)
+(which requires `libvips`) to convert that to JPEG. Both must be installed on the host.
+
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -36,6 +40,12 @@ svg_avatar = generator.generate
 jpeg_avatar = DefaultAvatarGenerator::ImageConverter.svg_to_jpeg(svg_avatar)
 # Save the avatar to a file (if you need to)
 ```
+
+Note: `ImageConverter.svg_to_jpeg` rasterizes via `rsvg-convert` rather than vips's own SVG
+loader. Apps that load Rails Active Storage call `Vips.block_untrusted(true)` on boot, which
+disables vips's `svgload`/`svgload_buffer` process-wide (they're flagged `untrusted` since they
+rely on rsvg's unfuzzed parser) — that would break this gem even for the SVGs it generates
+itself. Going through `rsvg-convert` avoids that entirely.
 
 ## Development
 
